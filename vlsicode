@@ -1,0 +1,40 @@
+module pipeline(
+    input clk,
+    input rst,
+    input [7:0]instr,
+    output [7:0]result
+    );
+    reg [7:0] IF_ID,ID_EX,EX_MEM,MEM_WB;
+    reg [7:0] result;
+    always @(posedge clk or posedge rst)
+    begin
+          if(rst) begin 
+             IF_ID<=0;
+             ID_EX<=0;
+             EX_MEM<=0;
+             MEM_WB<=0;
+             result<=0;
+           end  else
+             IF_ID<= instr;
+             ID_EX<=IF_ID;
+             EX_MEM<=ID_EX;
+             MEM_WB<=EX_MEM;
+    end  
+    always@(posedge clk ) begin
+        result<=MEM_WB;
+      end
+endmodule  
+
+
+testbench:
+module pipeline_tb();
+   reg clk,rst;
+   reg [7:0] instr;
+   wire [7:0] result;
+   pipeline uut(.clk(clk),.rst(rst),.instr(instr),.result(result));
+   always #25 clk=~clk;
+   initial begin
+      #10 clk=0;rst=1;instr=8'b11110000;
+      #10 clk=0;rst=0;instr=8'b11110000;
+    end
+endmodule
