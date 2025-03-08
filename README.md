@@ -42,3 +42,8 @@ Clone this repository.
 Implement the pipelined processor in Verilog/VHDL.
 Compile and simulate the design using an HDL simulator (ModelSim, Xilinx Vivado, etc.).
 Run the testbench and analyze simulation results.
+
+OUTPUT:
+
+![Image](https://github.com/user-attachments/assets/3a3969e9-4c6f-47cb-955f-a34527d250ae)
+![Image](https://github.com/user-attachments/assets/5c47efbf-6061-4ff4-8419-7032f2862ae3)
